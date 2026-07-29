@@ -117,10 +117,21 @@ h2 {
   display: inline-flex;
   gap: 10px;
 }
-/* 손가락으로 누르기 편하게 터치 영역을 키운다 */
+/* 손가락으로 누르기 편하게 터치 영역을 키우고, 색은 제목 밴드 글자색을 따라간다
+   (엑셀 테마의 진초록 밴드 등 어두운 배경에서도 보이도록) */
 .card h2 .head-btns .icon {
   padding: 8px;
   margin: -6px 0;
+  color: inherit;
+}
+.card h2 .head-btns .icon:hover:not(:disabled) {
+  background: color-mix(in srgb, currentColor 18%, transparent);
+  color: inherit;
+}
+.card h2 .head-btns .icon.toggled {
+  background: color-mix(in srgb, currentColor 22%, transparent);
+  color: inherit;
+  border-color: transparent;
 }
 
 button {
