@@ -553,13 +553,31 @@ tr:hover .memo-btn,
 .cat-row.drag-over {
   background: var(--accent-soft);
 }
+/* 드래그 중 포인터를 따라다니는 항목 이름 배지 */
+.drag-ghost {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  transform: translate(14px, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  font-size: 0.85em;
+  white-space: nowrap;
+}
 .cat-row input {
   width: 100%;
 }
 .cat-row .icons {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 10px;
 }
 .cat-row .icons button {
   height: 26px;

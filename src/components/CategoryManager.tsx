@@ -33,7 +33,9 @@ export default function CategoryManager({ categories, entries, onChange, onDelet
   const count = (id: string) => entries.filter((e) => e.categoryId === id).length
 
   // 포인터 기반 드래그 정렬 (마우스·터치 공통)
-  const [drag, setDrag] = useState<{ id: string; kind: Kind; overId: string | null } | null>(null)
+  const [drag, setDrag] = useState<{ id: string; kind: Kind; overId: string | null; x: number; y: number } | null>(
+    null,
+  )
   const rowRefs = useRef(new Map<string, HTMLElement>())
 
   const dragMove = (e: React.PointerEvent) => {
@@ -47,7 +49,7 @@ export default function CategoryManager({ categories, entries, onChange, onDelet
         break
       }
     }
-    if (overId !== drag.overId) setDrag({ ...drag, overId })
+    setDrag({ ...drag, overId, x: e.clientX, y: e.clientY })
   }
   const dragEnd = () => {
     if (drag?.overId && drag.overId !== drag.id) onReorder(drag.id, drag.overId)
@@ -76,7 +78,7 @@ export default function CategoryManager({ categories, entries, onChange, onDelet
               onPointerDown={(e) => {
                 e.preventDefault()
                 e.currentTarget.setPointerCapture(e.pointerId)
-                setDrag({ id: c.id, kind: k, overId: null })
+                setDrag({ id: c.id, kind: k, overId: null, x: e.clientX, y: e.clientY })
               }}
               onPointerMove={dragMove}
               onPointerUp={dragEnd}
@@ -126,6 +128,11 @@ export default function CategoryManager({ categories, entries, onChange, onDelet
 
   return (
     <div>
+      {drag && (
+        <div className="drag-ghost" style={{ left: drag.x, top: drag.y }}>
+          <GripVertical size={13} /> {categories.find((c) => c.id === drag.id)?.name}
+        </div>
+      )}
       <div className="sections">
         {section('수입')}
         {section('지출')}
