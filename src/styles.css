@@ -1,0 +1,4 @@
+@import 'tailwindcss';
+/* 앱 커스텀 CSS는 components 레이어로 — Tailwind 유틸리티(utilities 레이어)가 이길 수 있게.
+   레이어 밖 CSS는 명시도와 무관하게 항상 레이어 안 CSS를 이기므로, 여기 두면 유틸리티가 무시된다. */
+@import './app.css' layer(components);

@@ -1,0 +1,1140 @@
+
+/* ── 테마 ─────────────────────────────────────────────── */
+/* 기본: 파스텔 플래너 — 웜 베이지 바탕, 흰 페이지, 파스텔 밴드와 잔잔한 헤어라인 */
+:root,
+[data-theme='classic'] {
+  --bg-color: #ece3da;
+  --bg-image: none;
+  --card: #ffffff;
+  --card-border: #e7ded5;
+  --line: #efe8e1;
+  --text: #4b443f;
+  --muted: #a69c93;
+  --accent: #b08d7a;
+  --accent-soft: #f0e6df;
+  --accent-text: #8a6f5f;
+  --plus: #6f94ba;
+  --minus: #c08484;
+  --radius: 6px;
+  --font: 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+  --pastel-pink: #f3ddda;
+  --pastel-blue: #d5e3ee;
+  --pastel-green: #dce8d6;
+  --pastel-purple: #dfdaee;
+}
+
+/* 15세기 고서: 양피지 질감, 세리프, 적갈색 잉크 */
+[data-theme='manuscript'] {
+  --bg-color: #e5d7b8;
+  --bg-image: radial-gradient(ellipse at 18% 8%, rgba(255, 250, 232, 0.6), transparent 55%),
+    radial-gradient(ellipse at 85% 92%, rgba(112, 78, 34, 0.22), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(120, 90, 40, 0.05) 0 2px, transparent 2px 5px);
+  --card: #f5ebd2;
+  --card-border: #c5aa76;
+  --line: #e0d0a8;
+  --text: #40301b;
+  --muted: #8a7451;
+  --accent: #7c3626;
+  --accent-soft: #e8d6b2;
+  --accent-text: #6b2f21;
+  --plus: #4e5d2e;
+  --minus: #8f2c1d;
+  --radius: 4px;
+  --font: 'Nanum Myeongjo', 'AppleMyungjo', Georgia, 'Times New Roman', serif;
+}
+
+/* 현대 장부책: 줄 그어진 노트, 붉은 여백선 */
+/* 장부: 전통 원장 용지 — 흰 종이, 붉은 이중 괘선, 푸른 가로줄, 금액란 자릿수 세로줄, 명조체 */
+[data-theme='ledger'] {
+  --bg-color: #f3f0e9;
+  --bg-image: none;
+  --card: #ffffff;
+  --card-border: #d9a49c;
+  --line: #b6c9e2;
+  --text: #26303a;
+  --muted: #8a94a0;
+  --accent: #b3372c;
+  --accent-soft: #f6e5e2;
+  --accent-text: #8f2b22;
+  --plus: #1d5fae;
+  --minus: #b3372c;
+  --radius: 0;
+  --font: 'Noto Serif KR', 'AppleMyungjo', 'Apple Myungjo', 'Nanum Myeongjo', serif;
+  --ledger-red: rgba(196, 69, 58, 0.75);
+  --ledger-blue: rgba(70, 120, 190, 0.5);
+  --ledger-grid: rgba(70, 120, 190, 0.25);
+}
+
+/* 엑셀: 격자는 표 안에서만(배경 그리드 없음), 초록 포인트, 각진 모서리 */
+[data-theme='excel'] {
+  --bg-color: #e9ebee;
+  --bg-image: none;
+  --card: #ffffff;
+  --card-border: #c8cdd2;
+  --line: #e3e6e9;
+  --text: #212529;
+  --muted: #6c757d;
+  --accent: #217346;
+  --accent-soft: #e2efda;
+  --accent-text: #1a5c38;
+  --plus: #217346;
+  --minus: #c00000;
+  --radius: 3px;
+  --font: 'Segoe UI', Calibri, 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+}
+
+/* ── 기본 ─────────────────────────────────────────────── */
+body {
+  margin: 0;
+  font-family: var(--font);
+  background-color: var(--bg-color);
+  background-image: var(--bg-image);
+  color: var(--text);
+}
+#root {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h1 {
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 700;
+}
+h2 {
+  font-size: 1rem;
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.card h2 {
+  display: flex;
+  align-items: center;
+}
+.card h2 .head-btns {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 10px;
+}
+/* 손가락으로 누르기 편하게 터치 영역을 키운다 */
+.card h2 .head-btns .icon {
+  padding: 8px;
+  margin: -6px 0;
+}
+
+button {
+  font: inherit;
+  padding: 6px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+button:hover:not(:disabled) {
+  filter: brightness(0.96);
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+button.danger {
+  color: var(--minus);
+}
+button.link {
+  border: none;
+  background: none;
+  color: var(--accent);
+  padding: 2px 6px;
+  font-size: 0.85em;
+}
+button.icon {
+  padding: 5px;
+  border: 1px solid transparent;
+  background: none;
+  border-radius: 6px;
+  color: var(--muted);
+}
+button.icon:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  filter: none;
+}
+button.icon.toggled {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-color: var(--card-border);
+}
+button.icon.txt {
+  font-size: 0.75em;
+  padding: 4px 7px;
+  white-space: nowrap;
+}
+
+input,
+select {
+  font: inherit;
+  padding: 6px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text);
+}
+input:focus,
+select:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-color: var(--accent);
+}
+input.amount {
+  text-align: right;
+  width: 140px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.center {
+  max-width: 480px;
+  margin: 10vh auto;
+}
+.center p {
+  color: var(--muted);
+}
+.center .primary {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+.divider {
+  text-align: center;
+  color: var(--muted);
+  margin: 12px 0;
+  font-size: 0.85em;
+}
+
+/* ── 헤더 ─────────────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+header .title {
+  font-weight: 800;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+header nav {
+  display: flex;
+  gap: 4px;
+}
+header nav button {
+  border: none;
+  background: none;
+  color: var(--muted);
+}
+header nav button.active {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+.save-state {
+  font-size: 0.8em;
+  color: var(--muted);
+}
+.save-state.saved {
+  color: #16a34a;
+}
+.save-state.error {
+  color: var(--minus);
+}
+.theme-select {
+  padding: 4px 8px;
+  font-size: 0.85em;
+}
+
+/* ── 팝업(드롭다운) ───────────────────────────────────── */
+.copy-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+.popup {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 150px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 6px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+.popup-title {
+  font-size: 0.78em;
+  color: var(--muted);
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+/* 테마별 버튼 장식(그라데이션 등)보다 우선하도록 특이도를 살짝 높인다 */
+div.popup button {
+  border: none;
+  background: none;
+  box-shadow: none;
+  justify-content: flex-start;
+  padding: 6px 8px;
+  white-space: nowrap;
+}
+div.popup button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.error {
+  background: color-mix(in srgb, var(--minus) 8%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--minus) 30%, transparent);
+  color: var(--minus);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 0.9em;
+}
+
+/* ── 월별 뷰 ──────────────────────────────────────────── */
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.month-nav input[type='month'] {
+  font-weight: 700;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.stat .label {
+  font-size: 0.8em;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.stat .value {
+  font-size: 1.1em;
+  font-weight: 700;
+  text-align: right;
+}
+.stat .value.plus {
+  color: var(--plus);
+}
+.stat .value.minus {
+  color: var(--minus);
+}
+.stat input.amount {
+  width: 100%;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 680px) {
+  .sections {
+    grid-template-columns: 1fr;
+  }
+  .summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--line);
+}
+td.num {
+  text-align: right;
+  width: 150px;
+}
+td.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 14px;
+}
+tfoot td {
+  font-weight: 700;
+  border-bottom: none;
+  padding-top: 10px;
+}
+/* 합계는 readonly input — 위 행들과 같은 박스라 모든 테마에서 자동 정렬 */
+tfoot td.total input.amount {
+  font-weight: 700;
+  background: transparent;
+  border-color: transparent;
+  pointer-events: none;
+}
+tr.excluded td:first-child {
+  color: var(--muted);
+}
+/* 항목 라벨: 이름·배지·메모 버튼을 한 줄에 고정 (숨은 메모 버튼 때문에 줄바꿈되지 않게) */
+.cat-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.cat-label .badge {
+  margin-left: 0;
+}
+.badge-icon {
+  display: inline-flex;
+  color: var(--muted);
+  flex: none;
+}
+.memo-btn {
+  padding: 3px;
+  flex: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+tr:hover .memo-btn,
+.memo-btn.toggled,
+.memo-btn:focus-visible {
+  opacity: 1;
+}
+.memo-text {
+  font-size: 0.75em;
+  color: var(--muted);
+  margin-top: 1px;
+  white-space: pre-wrap;
+}
+.memo-row td {
+  padding: 4px;
+}
+.memo-row input {
+  width: 100%;
+  font-size: 0.85em;
+}
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 0.72em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* ── 폼/항목관리 ──────────────────────────────────────── */
+.add-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.add-form input:not([type='checkbox']) {
+  flex: 1;
+  min-width: 120px;
+}
+.chk {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.segmented button {
+  border: none;
+  border-radius: 0;
+  background: var(--card);
+  color: var(--muted);
+  padding: 6px 14px;
+}
+.segmented button.on {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.cat-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--line);
+}
+/* 드래그 정렬 핸들 — touch-action: none이어야 터치 드래그 중 화면이 스크롤되지 않는다 */
+.cat-row .drag-handle {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 4px;
+  margin: -4px 0;
+  color: var(--muted);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.cat-row.dragging {
+  opacity: 0.45;
+}
+.cat-row.dragging .drag-handle {
+  cursor: grabbing;
+}
+.cat-row.drag-over {
+  background: var(--accent-soft);
+}
+.cat-row input {
+  width: 100%;
+}
+.cat-row .icons {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.cat-row .icons button {
+  height: 26px;
+  min-width: 26px;
+  padding: 0 5px;
+}
+.cat-row.is-hidden input {
+  color: var(--muted);
+}
+
+.manager-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── 시트 목록 ────────────────────────────────────────── */
+.sheet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 10px 0;
+}
+.sheet-list button {
+  justify-content: flex-start;
+  text-align: left;
+  gap: 8px;
+}
+.sheet-list .file-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.sheet-list .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sheet-list .path {
+  color: var(--muted);
+  font-size: 0.75em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sheet-list .date {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.8em;
+  flex-shrink: 0;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--muted);
+}
+.search-box input {
+  flex: 1;
+}
+
+.btn-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 340px;
+}
+.list-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+
+/* 금액은 모든 테마에서 고정폭 숫자로 */
+input.amount,
+.stat .value,
+td.num,
+tfoot td.total {
+  font-variant-numeric: tabular-nums;
+}
+[data-theme='classic'] input.amount,
+[data-theme='classic'] .stat .value,
+[data-theme='classic'] td.num,
+[data-theme='classic'] tfoot td.total {
+  font-family: 'SF Mono', Menlo, 'Roboto Mono', monospace;
+  font-size: 0.95em;
+}
+
+/* ── 테마별 컴포넌트 스타일 ───────────────────────────── */
+
+/* 기본: 파스텔 플래너 — 카드 상단 파스텔 밴드 제목, 지브라 행, 파스텔 요약 라벨 */
+[data-theme='classic'] .card,
+[data-theme='classic'] .stat {
+  box-shadow: 0 2px 10px rgba(122, 101, 84, 0.08);
+}
+[data-theme='classic'] .card h2 {
+  margin: -16px -16px 12px;
+  padding: 7px 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--pastel-green);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+[data-theme='classic'] .card-income h2 {
+  background: var(--pastel-blue);
+}
+[data-theme='classic'] .card-expense h2 {
+  background: var(--pastel-pink);
+}
+[data-theme='classic'] .card-income tbody tr:not(.memo-row):nth-child(odd) td {
+  background: color-mix(in srgb, var(--pastel-blue) 32%, transparent);
+}
+[data-theme='classic'] .card-expense tbody tr:not(.memo-row):nth-child(odd) td {
+  background: color-mix(in srgb, var(--pastel-pink) 32%, transparent);
+}
+[data-theme='classic'] .card-income tfoot td {
+  background: color-mix(in srgb, var(--pastel-blue) 55%, transparent);
+}
+[data-theme='classic'] .card-expense tfoot td {
+  background: color-mix(in srgb, var(--pastel-pink) 55%, transparent);
+}
+[data-theme='classic'] tfoot td {
+  padding: 6px 4px;
+}
+[data-theme='classic'] .stat .label {
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--pastel-purple);
+  color: var(--text);
+  width: fit-content;
+}
+[data-theme='classic'] .summary .stat:nth-child(2) .label {
+  background: var(--pastel-blue);
+}
+[data-theme='classic'] .summary .stat:nth-child(3) .label {
+  background: var(--pastel-pink);
+}
+[data-theme='classic'] .summary .stat:nth-child(4) .label {
+  background: var(--pastel-green);
+}
+[data-theme='classic'] header .title {
+  color: var(--accent-text);
+}
+[data-theme='classic'] input:focus,
+[data-theme='classic'] select:focus {
+  outline: 2px solid color-mix(in srgb, var(--plus) 35%, transparent);
+  border-color: var(--plus);
+}
+
+/* 고서: 잉크 밑줄 입력, 이중 테두리 카드, 장식적 제목 */
+[data-theme='manuscript'] .card,
+[data-theme='manuscript'] .stat {
+  box-shadow: 2px 3px 10px rgba(80, 55, 20, 0.22);
+  outline: 1px solid rgba(124, 54, 38, 0.35);
+  outline-offset: -5px;
+}
+[data-theme='manuscript'] input,
+[data-theme='manuscript'] select {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+[data-theme='manuscript'] input:hover:not(:focus),
+[data-theme='manuscript'] select:hover:not(:focus) {
+  background: rgba(124, 54, 38, 0.05);
+}
+[data-theme='manuscript'] input:focus,
+[data-theme='manuscript'] select:focus {
+  outline: none;
+  background: rgba(124, 54, 38, 0.1);
+}
+[data-theme='manuscript'] button:where(:not(.icon):not(.link):not(.primary)) {
+  background: linear-gradient(#f8f0da, #e9d8ae);
+  border-color: #a8905f;
+  box-shadow: 1px 1px 0 rgba(80, 55, 20, 0.25);
+}
+[data-theme='manuscript'] header nav button {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+[data-theme='manuscript'] header nav button.active {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+[data-theme='manuscript'] .segmented button {
+  background: var(--card);
+  border: none;
+  box-shadow: none;
+}
+[data-theme='manuscript'] button.primary {
+  background: linear-gradient(#8d4434, #6b2f21);
+  border-color: #5a2719;
+  color: #f5ebd2;
+}
+[data-theme='manuscript'] h1,
+[data-theme='manuscript'] h2,
+[data-theme='manuscript'] header .title {
+  letter-spacing: 0.06em;
+}
+[data-theme='manuscript'] h2 {
+  color: var(--accent);
+  border-bottom: 3px double #c5aa76;
+  padding-bottom: 6px;
+}
+[data-theme='manuscript'] td {
+  border-bottom: 1px dotted #b89a63;
+}
+[data-theme='manuscript'] tfoot td {
+  border-top: 1px solid #8a6d3b;
+}
+[data-theme='manuscript'] .segmented button.on {
+  background: var(--accent);
+}
+
+/* 장부: 전통 원장 용지 — 카드가 붉은 이중 괘선 틀, 행은 푸른 가로줄, 금액란은 자릿수 세로 괘선 */
+[data-theme='ledger'] .card,
+[data-theme='ledger'] .stat {
+  background: var(--card);
+  border: 3px double var(--ledger-red);
+  border-radius: 0;
+  box-shadow: none;
+}
+/* 표제칸: 붉은 괘선 머리띠 (이미지의 헤더 박스처럼 카드 상단 전체 폭) */
+[data-theme='ledger'] .card h2 {
+  margin: -16px -16px 10px;
+  padding: 7px 16px;
+  border-bottom: 3px double var(--ledger-red);
+  color: var(--accent-text);
+  text-align: center;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  font-weight: 600;
+}
+[data-theme='ledger'] td {
+  height: 30px;
+  padding: 0 6px;
+  border-bottom: 1px solid var(--ledger-blue);
+}
+/* 적요(이름) 열과 금액 열 사이 붉은 이중 세로 괘선 */
+[data-theme='ledger'] td.num {
+  border-left: 3px double var(--ledger-red);
+  padding: 0;
+}
+/* 금액은 한 자리씩 괘선 칸 안에 — 자릿수 괘선을 글자폭(1ch) 간격으로 입력칸 오른쪽 끝에 맞춰 깐다.
+   고정폭 글꼴이라 숫자·콤마가 정확히 한 칸에 하나씩 들어간다 */
+[data-theme='ledger'] td.num input.amount {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 2px;
+  background-image: linear-gradient(90deg, var(--ledger-grid) 0 1px, transparent 1px);
+  background-size: 1ch 100%;
+  background-repeat: repeat-x;
+  background-position: right top;
+}
+[data-theme='ledger'] td input {
+  height: 29px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+[data-theme='ledger'] .cat-row {
+  border-bottom: 1px solid var(--ledger-blue);
+  padding: 2px 0;
+  min-height: 30px;
+}
+[data-theme='ledger'] .cat-row input {
+  height: 29px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+[data-theme='ledger'] input,
+[data-theme='ledger'] select {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+/* 새 항목 입력란은 쓰는 칸임이 보이도록 테두리 유지 */
+[data-theme='ledger'] .add-form input:not([type='checkbox']) {
+  border: 1px solid var(--card-border);
+  background: #fff;
+}
+[data-theme='ledger'] input:hover:not(:focus),
+[data-theme='ledger'] select:hover:not(:focus) {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+[data-theme='ledger'] input:focus,
+[data-theme='ledger'] select:focus {
+  outline: 1px solid var(--ledger-red);
+  background: #fff;
+}
+[data-theme='ledger'] input.amount,
+[data-theme='ledger'] .stat .value,
+[data-theme='ledger'] td.num,
+[data-theme='ledger'] tfoot td.total {
+  font-family: 'Menlo', 'SF Mono', 'Courier New', monospace;
+  font-size: 0.95em;
+}
+[data-theme='ledger'] tfoot td {
+  border-top: 3px double var(--ledger-red);
+  border-bottom: none;
+  height: 30px;
+  padding: 0 6px;
+}
+[data-theme='ledger'] h1,
+[data-theme='ledger'] header .title {
+  letter-spacing: 0.08em;
+}
+[data-theme='ledger'] header nav button {
+  background: none;
+  border: none;
+}
+[data-theme='ledger'] header nav button.active {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+/* 엑셀: 셀 모양 입력(선택 시 초록 테두리), 격자 테이블, 시트 헤더식 제목 */
+[data-theme='excel'] .card,
+[data-theme='excel'] .stat {
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme='excel'] input,
+[data-theme='excel'] select,
+[data-theme='excel'] button {
+  border-radius: 0;
+}
+/* 입력란은 셀에 직접 쓰는 것처럼 테두리 없이, 포커스 시 엑셀 셀 선택 테두리 */
+[data-theme='excel'] input,
+[data-theme='excel'] select {
+  border: none;
+  background: transparent;
+}
+[data-theme='excel'] input:hover:not(:focus),
+[data-theme='excel'] select:hover:not(:focus) {
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+[data-theme='excel'] input:focus,
+[data-theme='excel'] select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+  background: #fff;
+}
+/* 버튼은 리본 버튼처럼 — 입력란과 확실히 구별 (:where로 특이도 낮춰 선택 상태 스타일이 이기게) */
+[data-theme='excel'] button:where(:not(.icon):not(.link):not(.primary)) {
+  background: linear-gradient(#fdfdfd, #e9ecef);
+  border: 1px solid #b9bfc6;
+}
+[data-theme='excel'] header nav button {
+  background: none;
+  border: none;
+}
+[data-theme='excel'] header nav button.active {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+[data-theme='excel'] .segmented button {
+  background: var(--card);
+  border: none;
+}
+[data-theme='excel'] .theme-select {
+  border: 1px solid #b9bfc6;
+  background: #fff;
+}
+[data-theme='excel'] .card h2 {
+  background: var(--accent);
+  color: #fff;
+  margin: -16px -16px 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+[data-theme='excel'] td {
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+}
+[data-theme='excel'] tfoot td {
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+}
+[data-theme='excel'] .segmented button.on {
+  background: var(--accent);
+  color: #fff;
+}
+[data-theme='excel'] button:not(.icon):not(.link):not(.primary):hover:not(:disabled) {
+  background: var(--accent-soft);
+  filter: none;
+}
+.btn-col button {
+  justify-content: flex-start;
+}
+.hint {
+  color: var(--muted);
+  font-size: 0.85em;
+}
+ol.hint {
+  padding-left: 20px;
+}
+
+/* ── 인쇄/캡처용 당월 리포트 (테마 색을 그대로 따른다) ── */
+.report {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--card-border);
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 28px 32px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.report-title {
+  text-align: center;
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 22px;
+}
+.report-table th {
+  text-align: left;
+  font-size: 0.85em;
+  color: var(--muted);
+  border-bottom: 2px solid var(--text);
+  padding: 4px 2px;
+}
+.report-table td {
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--line);
+  border-left: none;
+  border-right: none;
+  background: none;
+  height: auto;
+}
+.report-table td.name {
+  width: 36%;
+}
+.report-table td.memo {
+  color: var(--muted);
+  font-size: 0.8em;
+}
+.report-table td.num {
+  text-align: right;
+  width: 130px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.report-table td.empty {
+  color: var(--muted);
+  text-align: center;
+}
+.report-table tfoot td {
+  font-weight: 700;
+  border-top: 2px solid var(--text);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  background: none;
+}
+.report-summary {
+  max-width: 320px;
+  margin-left: auto;
+}
+.report-summary .balance td {
+  font-weight: 800;
+  font-size: 1.1em;
+  border-top: 3px double var(--text);
+  border-bottom: none;
+}
+
+/* 테마별 리포트 장식 */
+[data-theme='classic'] .report-table th {
+  background: var(--pastel-green);
+  color: var(--text);
+  border-bottom: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+[data-theme='classic'] .report-income th {
+  background: var(--pastel-blue);
+}
+[data-theme='classic'] .report-expense th {
+  background: var(--pastel-pink);
+}
+[data-theme='classic'] .report-income tfoot td {
+  background: color-mix(in srgb, var(--pastel-blue) 55%, transparent);
+  border-top: none;
+  padding: 6px 8px;
+}
+[data-theme='classic'] .report-expense tfoot td {
+  background: color-mix(in srgb, var(--pastel-pink) 55%, transparent);
+  border-top: none;
+  padding: 6px 8px;
+}
+[data-theme='classic'] .report-summary .balance td {
+  background: color-mix(in srgb, var(--pastel-green) 55%, transparent);
+  border-top: none;
+  padding: 6px 8px;
+}
+
+[data-theme='ledger'] .report {
+  border: 3px double var(--ledger-red);
+}
+[data-theme='ledger'] .report-title {
+  color: var(--accent-text);
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+}
+[data-theme='ledger'] .report-table th {
+  color: var(--accent-text);
+  border-bottom: 3px double var(--ledger-red);
+}
+[data-theme='ledger'] .report-table td {
+  border-bottom: 1px solid var(--ledger-blue);
+  padding: 5px 6px;
+}
+[data-theme='ledger'] .report-table td.num {
+  border-left: 3px double var(--ledger-red);
+  padding: 5px 6px;
+}
+[data-theme='ledger'] .report-table tfoot td,
+[data-theme='ledger'] .report-summary .balance td {
+  border-top: 3px double var(--ledger-red);
+}
+
+[data-theme='manuscript'] .report {
+  outline: 1px solid rgba(124, 54, 38, 0.35);
+  outline-offset: -5px;
+  box-shadow: 2px 3px 10px rgba(80, 55, 20, 0.22);
+}
+[data-theme='manuscript'] .report-title {
+  color: var(--accent);
+  border-bottom: 3px double #c5aa76;
+  padding-bottom: 8px;
+}
+[data-theme='manuscript'] .report-table th {
+  color: var(--accent-text);
+  border-bottom: 2px solid var(--card-border);
+}
+
+[data-theme='excel'] .report-table th {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border: 1px solid var(--line);
+  padding: 5px 8px;
+}
+[data-theme='excel'] .report-table td {
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+}
+[data-theme='excel'] .report-table tfoot td {
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+}
+[data-theme='excel'] .report-summary .balance td {
+  border-top: 2px solid var(--accent);
+}
+
+@media print {
+  header,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+  #root {
+    max-width: none;
+    padding: 0;
+  }
+  .report {
+    border: none;
+    box-shadow: none;
+    max-width: none;
+  }
+  .error {
+    display: none;
+  }
+}
